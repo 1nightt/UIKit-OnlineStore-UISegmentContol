@@ -2,15 +2,15 @@ import UIKit
 
 /// VC Выбора кроссовок
 final class ChoosingSneakersViewController: UIViewController {
-    var modelLabel = UILabel()
-    var sneakerImage = UIImageView()
-    var backgroundColor = UIColor(red: 53/255.0, green: 60/255.0, blue: 63/255.0, alpha: 1.0)
-    var textColor = UIColor(red: 255/255.0, green: 245/255.0, blue: 255/255.0, alpha: 1.0)
-    let sneakerCharacteristics = SneakerCharacteristicks()
-    var nameAndPriceLabel = UILabel()
-    var descriptionTextView = UITextView()
-    var entryButton = UIButton(type: .system)
-    var segmentControl = UISegmentedControl()
+    private var modelLabel = UILabel()
+    private var sneakerImage = UIImageView()
+    private var backgroundColor = UIColor(red: 53/255.0, green: 60/255.0, blue: 63/255.0, alpha: 1.0)
+    private var textColor = UIColor(red: 255/255.0, green: 245/255.0, blue: 255/255.0, alpha: 1.0)
+    private let sneakerCharacteristics = SneakerCharacteristicks()
+    private var nameAndPriceLabel = UILabel()
+    private var descriptionTextView = UITextView()
+    private var entryButton = UIButton(type: .system)
+    private var segmentControl = UISegmentedControl()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -85,7 +85,7 @@ final class ChoosingSneakersViewController: UIViewController {
         descriptionTextView.text = sneakerCharacteristics.descriptionArray[sender.selectedSegmentIndex]
     }
     
-    @objc func nextView() {
+    @objc private func nextView() {
         let thirdVC = PaymentViewController()
         thirdVC.selectedSegmentIndex = segmentControl.selectedSegmentIndex
         navigationController?.pushViewController(thirdVC, animated: true)

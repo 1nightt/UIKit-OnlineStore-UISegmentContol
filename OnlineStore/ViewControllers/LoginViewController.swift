@@ -2,18 +2,18 @@ import UIKit
 
 /// Экран входа
 final class LoginViewController: UIViewController, UITextFieldDelegate {
-    let imageLogo = UIImageView()
-    var welcomeLabel = UILabel()
-    var loginLabel = UILabel()
-    var passwordLabel = UILabel()
-    var loginTextField = UITextField()
-    var passwordTextField = UITextField()
-    var nextScreenButton = UIButton(type: .system)
-    var hidePasswordButton = UIButton()
-    var loginImage = UIImageView(image: UIImage(systemName: "person.fill"))
-    var passwordImage = UIImageView(image: UIImage(systemName: "lock.fill"))
+    private let imageLogo = UIImageView()
+    private var welcomeLabel = UILabel()
+    private var loginLabel = UILabel()
+    private var passwordLabel = UILabel()
+    private var loginTextField = UITextField()
+    private var passwordTextField = UITextField()
+    private var nextScreenButton = UIButton(type: .system)
+    private var hidePasswordButton = UIButton()
+    private var loginImage = UIImageView(image: UIImage(systemName: "person.fill"))
+    private var passwordImage = UIImageView(image: UIImage(systemName: "lock.fill"))
     
-    var textColor = UIColor(red: 255/255.0, green: 245/255.0, blue: 255/255.0, alpha: 1.0)
+    private var textColor = UIColor(red: 255/255.0, green: 245/255.0, blue: 255/255.0, alpha: 1.0)
     
     // MARK: - Life Cycle
     override func viewDidLoad() {

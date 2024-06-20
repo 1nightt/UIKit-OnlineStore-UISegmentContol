@@ -1,32 +1,33 @@
 import UIKit
 
 /// Экран оплаты
-final class PaymentViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    let backGroundColor = UIColor(red: 53/255.0, green: 60/255.0, blue: 63/255.0, alpha: 1.0)
-    let textColor = UIColor(red: 255/255.0, green: 245/255.0, blue: 255/255.0, alpha: 1.0)
-    var dateLabel = UILabel()
-    var dateTextField = UITextField()
-    var datePicker = UIDatePicker()
-    var dateImage = UIImageView(image: UIImage(systemName: "calendar"))
-    var sizeImage = UIImageView(image: UIImage(systemName: "shoe.fill"))
+final class PaymentViewController: UIViewController {
+    private let backGroundColor = UIColor(red: 53/255.0, green: 60/255.0, blue: 63/255.0, alpha: 1.0)
+    private let textColor = UIColor(red: 255/255.0, green: 245/255.0, blue: 255/255.0, alpha: 1.0)
+    private var dateLabel = UILabel()
+    private var dateTextField = UITextField()
+    private var datePicker = UIDatePicker()
+    private var dateImage = UIImageView(image: UIImage(systemName: "calendar"))
+    private var sizeImage = UIImageView(image: UIImage(systemName: "shoe.fill"))
     
-    var sizeLabel = UILabel()
-    var sizeTextField = UITextField()
-    var sizePicker = UIPickerView()
+    private var sizeLabel = UILabel()
+    private var sizeTextField = UITextField()
+    private var sizePicker = UIPickerView()
     
-    var colorLabel = UILabel()
-    var colorTextField = UITextField()
-    var colorPicker = UIPickerView()
+    private var colorLabel = UILabel()
+    private var colorTextField = UITextField()
+    private var colorPicker = UIPickerView()
     
-    var sizeData = Array(39...45)
-    var colorData = ["Красный", "Черный", "Белый", "Синий", "Салатовый"]
+    private var sizeData = Array(39...45)
+    private var colorData = ["Красный", "Черный", "Белый", "Синий", "Салатовый"]
     
-    var payButton = UIButton(type: .system)
-    var priceLabel = UILabel()
-    var priceArray = SneakerCharacteristicks()
-    var price = Int()
+    private var payButton = UIButton(type: .system)
+    private var priceLabel = UILabel()
+    private var priceArray = SneakerCharacteristicks()
+    private var price = Int()
     var selectedSegmentIndex: Int?
     
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = backGroundColor
@@ -41,7 +42,8 @@ final class PaymentViewController: UIViewController, UIPickerViewDelegate, UIPic
         view.endEditing(true)
     }
     
-    func getPrice() -> Int {
+    // MARK: - Private Methods
+    private func getPrice() -> Int {
         if selectedSegmentIndex == 0 {
             price = priceArray.priceArray[0]
             return price
@@ -150,36 +152,6 @@ final class PaymentViewController: UIViewController, UIPickerViewDelegate, UIPic
         
     }
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if pickerView == sizePicker {
-            return sizeData.count
-        } else {
-            return colorData.count
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == sizePicker {
-            return "\(sizeData[row])"
-        } else {
-            return "\(colorData[row])"
-        }
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == sizePicker {
-            sizeTextField.text = "\(sizeData[row])"
-        } else {
-            return colorTextField.text = "\(colorData[row])"
-        }
-    }
-    
-    
-    
     private func createToolBar() -> UIToolbar {
         let toolBar = UIToolbar()
         toolBar.sizeToFit()
@@ -222,6 +194,36 @@ final class PaymentViewController: UIViewController, UIPickerViewDelegate, UIPic
             let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okButton)
             self.present(alertController, animated: true)
+        }
+    }
+}
+
+extension PaymentViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if pickerView == sizePicker {
+            return sizeData.count
+        } else {
+            return colorData.count
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView == sizePicker {
+            return "\(sizeData[row])"
+        } else {
+            return "\(colorData[row])"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView == sizePicker {
+            sizeTextField.text = "\(sizeData[row])"
+        } else {
+            return colorTextField.text = "\(colorData[row])"
         }
     }
 }
